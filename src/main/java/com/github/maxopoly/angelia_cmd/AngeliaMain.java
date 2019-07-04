@@ -26,7 +26,10 @@ public class AngeliaMain {
 		connection.getPluginManager().executePlugin("AngeliaCmd", new HashMap<String, String>());
 		cmdHandler = new CommandHandler(logger);
 		CommandLineReader reader = new CommandLineReader(logger, connManager, connection.getPlayerName(), cmdHandler);
-		cmdHandler.handle(parser.getCmdToRun(), connection);
+		String[] cmds = parser.getCmdsToRun();
+		for(int i = 0; i < cmds.length; i++) {
+			cmdHandler.handle(cmds[i], connection);
+		}
 		reader.start();
 	}
 	

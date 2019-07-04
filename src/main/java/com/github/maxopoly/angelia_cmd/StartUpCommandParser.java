@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 public class StartUpCommandParser {
 
 	private static Options options;
-	private String cmdToRun;
+	private String[] cmdsToRun;
 
 	static {
 		options = new Options();
@@ -34,7 +34,7 @@ public class StartUpCommandParser {
 			CommandLine cmd = parser.parse(options, args);
 			File saveFile = null;
 			if (cmd.hasOption("cmd")) {
-				cmdToRun = cmd.getOptionValue("cmd");
+				cmdsToRun = cmd.getOptionValues("cmd");
 			}
 			if (cmd.hasOption("saveFile")) {
 				saveFile = new File(cmd.getOptionValue("saveFile"));
@@ -106,7 +106,7 @@ public class StartUpCommandParser {
 		}
 	}
 
-	public String getCmdToRun() {
-		return cmdToRun;
+	public String[] getCmdsToRun() {
+		return cmdsToRun;
 	}
 }
